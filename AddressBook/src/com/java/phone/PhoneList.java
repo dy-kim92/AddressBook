@@ -24,7 +24,6 @@ public class PhoneList{
 				String line = null;
 				
 				while((line = br.readLine()) != null) {
-					//	line을 분절
 					
 					StringTokenizer st = new StringTokenizer(line,	
 															",");

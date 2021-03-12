@@ -19,10 +19,8 @@ public class PhoneDel{
 		
 			Scanner sc = new Scanner(System.in);
 		
-			//		Main Stream
 			Reader reader = null;
 			Writer writer = null;
-			//	보조 스트림
 			BufferedReader br = null;
 			BufferedWriter bw = null;
 		
