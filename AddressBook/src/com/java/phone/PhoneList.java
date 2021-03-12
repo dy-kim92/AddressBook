@@ -1,7 +1,6 @@
 package com.java.phone;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,19 +8,17 @@ import java.io.Reader;
 import java.util.StringTokenizer;
 
 public class PhoneList{
-	
-	File f = new File("D:\\kdy_workspace\\AddressBook\\PhoneDB.txt");
+	static final String rootPath = System.getProperty("user.dir") + "\\";
+	static final String filename = rootPath + "PhoneDB.txt";
 	
 	public void showList() {
 		
-		int num = 0;
-			//		Main Stream
+			int num = 0;
 			Reader reader = null;
-			//	보조 스트림
 			BufferedReader br = null;
 			
 			try {
-				reader = new FileReader(f);
+				reader = new FileReader(filename);
 				br = new BufferedReader(reader);
 				
 				String line = null;
@@ -29,11 +26,11 @@ public class PhoneList{
 				while((line = br.readLine()) != null) {
 					//	line을 분절
 					
-					StringTokenizer st = new StringTokenizer(line,	//	분절시킬 문자열
-															",");	//	분절시킬 구분자 - 기본값 : 공백, \t, \r, \n
+					StringTokenizer st = new StringTokenizer(line,	
+															",");
 					System.out.print((num + 1) + ".\t");
-					while(st.hasMoreTokens()) {			//	뒤에 토큰이 더 있는가?
-						String token = st.nextToken();	//	토큰을 받아오고 다음으로 이동
+					while(st.hasMoreTokens()) {	
+						String token = st.nextToken();
 						System.out.print(token + "\t");
 					}
 					System.out.println();

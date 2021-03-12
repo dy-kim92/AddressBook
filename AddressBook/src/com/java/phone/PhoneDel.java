@@ -2,7 +2,6 @@ package com.java.phone;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,8 +12,8 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 public class PhoneDel{
-	
-	File f = new File("D:\\kdy_workspace\\AddressBook\\PhoneDB.txt");
+	static final String rootPath = System.getProperty("user.dir") + "\\";
+	static final String filename = rootPath + "PhoneDB.txt";
 	
 	public void del() {
 		
@@ -35,10 +34,10 @@ public class PhoneDel{
 			int flag = 0;
 			
 			try {
-				reader = new FileReader(f);
+				reader = new FileReader(filename);
 				br = new BufferedReader(reader);
 				
-				writer = new FileWriter(f, true);
+				writer = new FileWriter(filename, true);
 				bw = new BufferedWriter(writer);
 				
 				
@@ -46,24 +45,26 @@ public class PhoneDel{
 				
 				while((line = br.readLine()) != null) {
 					
-					StringTokenizer st = new StringTokenizer(line,	//	분절시킬 문자열
-															"\n");	//	분절시킬 구분자 - 기본값 : 공백, \t, \r, \n
+					StringTokenizer st = new StringTokenizer(line,
+															"\n");
 					v.addElement(line);
 					
-					while(st.hasMoreTokens()) {			//	뒤에 토큰이 더 있는가?
-						String token = st.nextToken();	//	토큰을 받아오고 다음으로 이동
+					while(st.hasMoreTokens()) {	
+						String token = st.nextToken();
 					}
 					flag++;
 				}
+				FileWriter fw = new FileWriter(filename);
 				
 				for(int i = 0; i < v.size(); i++) {
 					if(i != (num - 1)) {
-						bw.write(v.elementAt(i));
-						bw.newLine();
+						fw.write(v.elementAt(i) + "\n");
 					}else {
 					}
 				}
-
+				fw.flush();
+				fw.close();
+				
 				System.out.println("[삭제되었습니다.]");
 				
 			}catch(IOException e) {
